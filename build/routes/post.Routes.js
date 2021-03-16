@@ -25,7 +25,11 @@ class PostRoutes {
             res.json(posts);
         });
     }
-    getPost() {
+    getPost(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const post = yield Post_Models_1.default.findOne({ url: req.params.url });
+            res.json(post);
+        });
     }
     createPost(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -42,10 +46,10 @@ class PostRoutes {
     }
     routes() {
         this.router.get("/", this.getPosts);
-        this.router.get("/:/url", this.getPost);
+        this.router.get("/:url", this.getPost);
         this.router.post("/", this.createPost);
-        this.router.put("/:/url", this.updatePost);
-        this.router.delete("/:/url", this.deletePost);
+        this.router.put("/:url", this.updatePost);
+        this.router.delete("/:url", this.deletePost);
     }
 }
 const postRoutes = new PostRoutes();
