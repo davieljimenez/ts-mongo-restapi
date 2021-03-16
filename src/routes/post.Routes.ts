@@ -1,4 +1,5 @@
 import {Response, Request, Router} from "express";
+import Post from "../models/Post.Models"
 
 class PostRoutes{
     router:Router;
@@ -7,9 +8,9 @@ class PostRoutes{
         this.routes();
     }
     
-    getPosts(req: Request, res:Response){
-        res.send("Post");
-
+    async getPosts(req: Request, res:Response){
+        const posts = await Post.find();
+        res.json(posts);
     }
 
     getPost(){
