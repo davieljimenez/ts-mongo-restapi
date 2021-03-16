@@ -27,7 +27,7 @@ class UserRoutes {
     }
     getUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield User_Models_1.default.findOne({ username: req.params.username });
+            const user = yield User_Models_1.default.findOne({ username: req.params.username }).populate("posts", "title url -_id");
             res.json(user);
         });
     }
