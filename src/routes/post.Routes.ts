@@ -26,13 +26,16 @@ class PostRoutes{
         res.json({data: newPost});
     }
 
-    updatePost(){
-
-
+    async updatePost(req:Request, res:Response){
+    const {url} = req.params;
+    const post = await Post.findOneAndUpdate({url},req.body, {new:true})
+    res.json(post)
     }
 
-    deletePost(){
-
+    async deletePost(req:Request, res:Response){
+        const {url} = req.params;
+        await Post.findOneAndDelete({url})
+        res.json({response:"Post Deleted successfully"})
     }
 
     routes(){

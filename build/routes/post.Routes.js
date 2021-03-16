@@ -40,9 +40,19 @@ class PostRoutes {
             res.json({ data: newPost });
         });
     }
-    updatePost() {
+    updatePost(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { url } = req.params;
+            const post = yield Post_Models_1.default.findOneAndUpdate({ url }, req.body, { new: true });
+            res.json(post);
+        });
     }
-    deletePost() {
+    deletePost(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { url } = req.params;
+            yield Post_Models_1.default.findOneAndDelete({ url });
+            res.json({ response: "Post Deleted successfully" });
+        });
     }
     routes() {
         this.router.get("/", this.getPosts);
