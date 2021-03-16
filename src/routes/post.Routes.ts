@@ -17,8 +17,12 @@ class PostRoutes{
 
     }
     
-    createPost(){
-
+    async createPost(req: Request, res:Response){
+        console.log(req.body);
+        const {title, url, content, image} = req.body;
+        const newPost = new Post({title, url, content, image})
+        await newPost.save();
+        res.json({data: newPost});
     }
 
     updatePost(){

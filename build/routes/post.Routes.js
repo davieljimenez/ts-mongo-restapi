@@ -27,7 +27,14 @@ class PostRoutes {
     }
     getPost() {
     }
-    createPost() {
+    createPost(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(req.body);
+            const { title, url, content, image } = req.body;
+            const newPost = new Post_Models_1.default({ title, url, content, image });
+            yield newPost.save();
+            res.json({ data: newPost });
+        });
     }
     updatePost() {
     }
