@@ -8,6 +8,7 @@ import cors from "cors"
 // Routes
 import indexRoutes from "./routes/index.Routes"
 import postRoutes from "./routes/post.Routes"
+import userRoutes from "./routes/user.Routes"
 
 
 class Server{
@@ -42,6 +43,8 @@ class Server{
     routes(){
         this.app.use(indexRoutes);
         this.app.use("/api/posts",postRoutes);
+        this.app.use("/api/users",userRoutes);
+
     }
 
     start(){
